@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>पुणे महानगरपालिका निवडणूक २०२६</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans Devanagari', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #FF9933 0%, #138808 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .header .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            padding: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .header .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .header .election-info {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .header .candidate-name {
+            font-size: 1.8em;
+            margin-top: 15px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container video,
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #aaa;
+            width: 80%;
+        }
+
+        .placeholder svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .content {
+            padding: 30px;
+        }
+
+        .content h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .content p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1em;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            margin: 0 10px;
+            background: #667eea;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            line-height: 45px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .social-links a:hover {
+            background: #764ba2;
+            transform: scale(1.2);
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease-out;
+            z-index: 1000;
+            max-width: 300px;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOut {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+        }
+
+        .notification.hide {
+            animation: slideOut 0.3s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .content h2 {
+                font-size: 1.5em;
+            }
+
+            .container {
+                border-radius: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="bjp1.jpg" alt="BJP Logo" class="logo">
+            <h1>पुणे महानगरपालिका निवडणूक २०२६</h1>
+            <h2>प्रभाग क ३८</h2>
+            <h3>रोहिदास बाप्पू चोरघे</h3>
+        </div>
+
+        <div class="video-wrapper">
+            <div class="video-container" id="videoContainer">
+                <!-- OPTION 1: For uploaded video files, use this -->
+                <video controls autoplay muted playsinline>
+                    <source src="video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+
+                <!-- OPTION 2: For YouTube videos, uncomment this and comment out video tag above -->
+                <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+
+                <!-- OPTION 3: For Vimeo videos, uncomment this and comment out video tag above -->
+                <!-- <iframe src="https://player.vimeo.com/video/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+            </div>
+        </div>
+
+        <div class="content">
+            <h2 id="greeting">स्वागत आहे!</h2>
+            <p id="description">
+                आपल्या समर्थनाबद्दल धन्यवाद. एक उज्ज्वल भविष्य बनवण्यासाठी आपल्या सोबत असताना आपण गर्वित आहे.
+            </p>
+
+            <!-- Stats Section -->
+            <div class="stats-container" id="statsContainer">
+                <div class="stat-box">
+                    <div class="stat-number" id="viewCount">0</div>
+                    <div class="stat-label">व्हिडिओ व्यूज</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="shareCount">0</div>
+                    <div class="stat-label">शेयर्स</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="supportCount">0</div>
+                    <div class="stat-label">समर्थक</div>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="#" title="Share on Facebook" onclick="shareOnFacebook(event)">f</a>
+                <a href="#" title="Share on WhatsApp" onclick="shareOnWhatsApp(event)">W</a>
+                <a href="#" title="Share on Twitter" onclick="shareOnTwitter(event)">𝕏</a>
+            </div>
+
+            <button class="cta-button" onclick="handleCTAClick()">अधिक जानकारी</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize counters from localStorage
+        function initializeCounters() {
+            const viewCount = localStorage.getItem('viewCount') || 0;
+            const shareCount = localStorage.getItem('shareCount') || 0;
+            const supportCount = localStorage.getItem('supportCount') || 0;
+
+            document.getElementById('viewCount').textContent = viewCount;
+            document.getElementById('shareCount').textContent = shareCount;
+            document.getElementById('supportCount').textContent = supportCount;
+        }
+
+        // Track video views
+        function trackVideoView() {
+            let viewCount = parseInt(localStorage.getItem('viewCount') || 0);
+            viewCount++;
+            localStorage.setItem('viewCount', viewCount);
+            document.getElementById('viewCount').textContent = viewCount;
+            showNotification('व्हिडिओ दृश्य ट्रॅक किया गया!');
+        }
+
+        // Increment support count
+        function incrementSupport() {
+            let supportCount = parseInt(localStorage.getItem('supportCount') || 0);
+            supportCount++;
+            localStorage.setItem('supportCount', supportCount);
+            document.getElementById('supportCount').textContent = supportCount;
+        }
+
+        // Share on Facebook
+        function shareOnFacebook(e) {
+            e.preventDefault();
+            const url = window.location.href;
+            const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            window.open(facebookUrl, '_blank', 'width=600,height=400');
+            updateShareCount();
+        }
+
+        // Share on WhatsApp
+        function shareOnWhatsApp(e) {
+            e.preventDefault();
+            const url = window.location.href;
+            const message = 'Check out this election campaign: ' + url;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            updateShareCount();
+        }
+
+        // Share on Twitter
+        function shareOnTwitter(e) {
+            e.preventDefault();
+            const url = window.location.href;
+            const text = 'पुणे महानगरपालिका निवडणूक २०२६ - रोहिदास बाप्पू चोरघे';
+            const twitterUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+            window.open(twitterUrl, '_blank', 'width=600,height=400');
+            updateShareCount();
+        }
+
+        // Update share count
+        function updateShareCount() {
+            let shareCount = parseInt(localStorage.getItem('shareCount') || 0);
+            shareCount++;
+            localStorage.setItem('shareCount', shareCount);
+            document.getElementById('shareCount').textContent = shareCount;
+            showNotification('शेयर किया गया! धन्यवाद!');
+        }
+
+        // CTA Button Handler
+        function handleCTAClick() {
+            incrementSupport();
+            showNotification('आपल्या समर्थनाबद्दल धन्यवाद! 🙏');
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.classList.add('hide');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        // Detect when video plays
+        function setupVideoTracking() {
+            const video = document.querySelector('video');
+            if (video) {
+                let hasPlayed = false;
+                video.addEventListener('play', () => {
+                    if (!hasPlayed) {
+                        trackVideoView();
+                        hasPlayed = true;
+                    }
+                });
+            }
+        }
+
+        // Detect page visibility
+        document.addEventListener('visibilitychange', () => {
+            if (!document.hidden) {
+                console.log('Page is now visible');
+            }
+        });
+
+        // Get current time greeting
+        function getGreeting() {
+            const hour = new Date().getHours();
+            if (hour < 12) return 'सुप्रभात!';
+            if (hour < 18) return 'नमस्कार!';
+            return 'शुभ संध्या!';
+        }
+
+        // Initialize page
+        window.addEventListener('load', () => {
+            initializeCounters();
+            setupVideoTracking();
+            document.getElementById('greeting').textContent = getGreeting();
+            showNotification('आपले स्वागत आहे! 🇮🇳');
+        });
+
+        // Prevent right-click on content (optional)
+        // document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Track page analytics
+        function trackPageView() {
+            const visitCount = parseInt(localStorage.getItem('visitCount') || 0);
+            localStorage.setItem('visitCount', visitCount + 1);
+            console.log('Total visits:', visitCount + 1);
+        }
+
+        trackPageView();
+    </script>
+</body>
+</html>
